@@ -1,0 +1,23 @@
+<div class="container my-5">
+  <div class="d-flex justify-content-end my-1">
+    <button type="button" class="btn btn-info" (click)="openFormTaskModal()">Aggiungi Task</button>
+  </div>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of (todoList$ | async)">
+            <th scope="row">1</th>
+            <td>{{todo.title}}</td>
+            <td>{{todo.description}}</td>
+            <td>{{todo.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
