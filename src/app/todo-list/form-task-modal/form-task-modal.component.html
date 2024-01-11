@@ -1,16 +1,37 @@
 <div class="container p-5">
+  <div class="d-flex justify-content-between mb-3">
     <h4>Aggiungi un nuovo task</h4>
-    <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Inserisci un titolo" formControlName="title">
-            <label for="floatingInput">Titolo</label>
-          </div>
-        <div class="mb-3">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Lascia una descrizione" id="floatingTextarea" formControlName="description"></textarea>
-                <label for="floatingTextarea">Descrizione</label>
-              </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Aggiungi</button>
-      </form>
+
+    <button
+      type="button"
+      class="btn btn-warning rounded-circle"
+      (click)="closeTodoModal()"
+    >
+      <i class="bi bi-x"></i>
+    </button>
+  </div>
+  <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Inserisci un titolo"
+        formControlName="title"
+      />
+      <label for="floatingInput">Titolo</label>
+    </div>
+    <div class="mb-3">
+      <div class="form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Lascia una descrizione"
+          id="floatingTextarea"
+          formControlName="description"
+        ></textarea>
+        <label for="floatingTextarea">Descrizione</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Aggiungi</button>
+  </form>
 </div>

@@ -7,8 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./todo-list/todo-list.module').then(m => m.TodoListModule)
   },
   {
+    path: 'wizards',
+    loadChildren: () => import('./wizards/wizards.module').then(m => m.WizardsModule)
+  },
+  {
     path: '',
-    redirectTo: 'todo',
+    redirectTo: 'wizards',
     pathMatch: 'full'
   }
 ];
