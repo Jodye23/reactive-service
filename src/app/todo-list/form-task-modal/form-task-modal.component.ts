@@ -25,6 +25,7 @@ export class FormTaskModalComponent {
     console.log(todoToAdd);
     this.todoService.addTodo(todoToAdd);
     this.todoForm.reset();
+    this.ngbActiveModal.close();
   }
 
   closeTodoModal() {
