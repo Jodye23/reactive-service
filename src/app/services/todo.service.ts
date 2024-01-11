@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { STATUS_TODO, Todo } from '../models/todo.model';
 
 @Injectable({
@@ -18,8 +18,35 @@ export class TodoService {
 
   constructor() { }
 
-  getTodoList():Observable<Todo[]> {
-    return this.todoList$.asObservable();
+  getTodoList(): Observable<any> {
+    return this.todoList$.asObservable().pipe(map(todos=> {
+      return {
+        todo: todos.filter((t) => t.status === STATUS_TODO.DONE),
+        notTodo: todos.filter((t) => t.status !== STATUS_TODO.DONE),
+      }
+    }) );
+  }
+
+
+  changeStatus(type: STATUS_TODO, id: number) {
+    this.todoList.map((todo) => {
+      if (todo.id === id) {
+        switch (type) {
+          case STATUS_TODO.DONE:
+            todo.status = STATUS_TODO.DONE;
+            break;
+          case STATUS_TODO.TO_BE_DONE:
+            todo.status = STATUS_TODO.TO_BE_DONE;
+            break;
+          case STATUS_TODO.RESCHEDULE:
+            todo.status = STATUS_TODO.RESCHEDULE;
+            break;
+        }
+      }
+      return todo;
+    })
+    this.todoList$.next(this.todoList);
+
   }
 
   addTodo(todo: Todo) {
